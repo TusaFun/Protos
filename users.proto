@@ -6,11 +6,21 @@ service Users {
   rpc IsOccupedUsername (IsOccupedUsernameRequest) returns (IsOccupedUsernameReply);
   rpc GetUser (GetUserRequest) returns (GetUserReply);
   rpc UpdateProperty (UpdatePropertyRequest) returns (UpdatePropertyReply);
+  rpc RemoveProperty (RemovePropertyRequest) returns (RemovePropertyResponse);
   rpc Create (CreateRequest) returns (CreateReply);
   rpc Delete (DeleteRequest) returns (DeleteReply);
   rpc Token (TokenRequest) returns (TokenReply);
   rpc Refresh (RefreshRequest) returns (RefreshReply);
   rpc Revoke (RevokeRequest) returns (RevokeReply);
+}
+
+message RemovePropertyRequest {
+    string type = 1;
+    string name = 2;
+}
+
+message RemovePropertyResponse {
+
 }
 
 message DeleteRequest {
