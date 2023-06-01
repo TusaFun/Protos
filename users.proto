@@ -1,0 +1,144 @@
+﻿
+syntax = "proto3";
+
+service Users {
+  rpc Paginate (PaginateRequest) returns (PaginateReply);
+  rpc IsOccupedUsername (IsOccupedUsernameRequest) returns (IsOccupedUsernameReply);
+  rpc GetUser (GetUserRequest) returns (GetUserReply);
+  rpc UpdateProperty (UpdatePropertyRequest) returns (UpdatePropertyReply);
+  rpc Create (CreateRequest) returns (CreateReply);
+  rpc Delete (DeleteRequest) returns (DeleteReply);
+  rpc Token (TokenRequest) returns (TokenReply);
+  rpc Refresh (RefreshRequest) returns (RefreshReply);
+  rpc Revoke (RevokeRequest) returns (RevokeReply);
+}
+
+message DeleteRequest {
+    string username = 1;
+}
+
+message DeleteReply {
+    bool deleated = 1;
+}
+
+message PageInformation {
+    int32 skipped = 1;
+    int32 limit = 2;
+    int64 amount = 3;
+}
+
+message PaginateReply {
+    repeated GetUserReply users = 1;
+    PageInformation page = 2;
+}
+
+message UpdatePropertyReply {
+    string username = 1;
+    UserProperty property = 2;
+}
+
+
+message RevokeReply {
+
+}
+
+message RevokeRequest {
+    string username = 1;
+}
+
+message RefreshRequest {
+    string accessToken = 1;
+    string refreshToken = 2;
+    int64 expireMillisecondsIn = 3;
+}
+
+message RefreshReply {
+    string accessToken = 1;
+    string refreshToken = 2;
+    string username = 3;
+    int64 millisecondsLife = 4;
+    int64 accessTokenExpirationTime = 5;
+    int64 expireMillisecondsIn = 6;
+}
+
+message TokenRequest {
+    string username = 1;
+    string password = 2;
+    int64 expireMillisecondsIn = 3;
+}
+
+message TokenReply {
+    string accessToken = 1;
+    string username = 2;
+    string refreshToken = 3;
+    int64 accessTokenExpirationTime = 4;
+    int64 expireMillisecondsIn = 5;
+}
+
+message CreateRequest {
+    string username = 1;
+    string password = 2;
+    string role = 3;
+    repeated UserProperty properties = 4;
+}
+
+
+message CreateReply {
+    string username = 1;
+    string role = 3;
+    repeated UserProperty properties = 4;
+}
+
+message UpdatePropertyRequest {
+    string username = 1;
+    string propertyType = 2;
+    string propertyName = 3;
+    string propertyNewValue = 4;
+}
+
+message GetUsersRequest {
+    repeated string users = 1;
+}
+
+message GetUsersReply {
+    repeated GetUserReply users = 1;
+}
+
+message GetUserRequest {
+    string username = 1;
+}
+
+message IsOccupedUsernameRequest {
+    string username = 1;
+}
+
+message IsOccupedUsernameReply {
+    bool occuped = 1;
+}
+
+message PaginateRequest {
+    int32 skip = 1;
+    int32 limit = 2;
+    string containsUsername = 3;
+    repeated string ignore = 4;
+}
+
+
+message GetUserReply {
+    string id = 1;
+    string username = 2;
+    int64 creationTimestamp = 3;
+    string role = 4;
+    repeated UserProperty properties = 5;
+}
+
+message UserProperty {
+    string type = 1;
+    string name = 2;
+    string value = 3;
+}
+
+
+
+
+
