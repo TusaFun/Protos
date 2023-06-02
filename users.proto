@@ -51,8 +51,9 @@ message UpdateReply {}
 
 
 message RemovePropertyRequest {
-    string type = 1;
-    string name = 2;
+    string username = 1;
+    string type = 2;
+    string name = 3;
 }
 
 message RemovePropertyReply {}
