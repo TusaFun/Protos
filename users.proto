@@ -6,7 +6,10 @@ service Users {
   rpc IsOccupedUsername (IsOccupedUsernameRequest) returns (IsOccupedUsernameReply);
   rpc GetUser (GetUserRequest) returns (GetUserReply);
   rpc UpdateProperty (UpdatePropertyRequest) returns (UpdatePropertyReply);
-  rpc RemoveProperty (RemovePropertyRequest) returns (RemovePropertyResponse);
+  rpc RemoveProperty (RemovePropertyRequest) returns (RemovePropertyReply);
+  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordReply);
+  rpc ChangeUsername (ChangeUsernameRequest) returns (ChangeUsernameReply);
+  rpc ChangeRole (ChangeRoleRequest) returns (ChangeRoleReply);
   rpc Create (CreateRequest) returns (CreateReply);
   rpc Delete (DeleteRequest) returns (DeleteReply);
   rpc Token (TokenRequest) returns (TokenReply);
@@ -14,14 +17,46 @@ service Users {
   rpc Revoke (RevokeRequest) returns (RevokeReply);
 }
 
+message ChangeRoleRequest {
+    string username = 1;
+    string role = 2;
+}
+
+message ChangeRoleReply {}
+
+
+message ChangeUsernameRequest {
+    string username = 1;
+    string newUsername = 2;
+}
+
+message ChangeUsernameReply {}
+
+
+message ChangePasswordRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message ChangePasswordReply {}
+
+
+message UpdateRequest {
+    string username = 1;
+    string role = 3;
+}
+
+message UpdateReply {}
+
+
+
 message RemovePropertyRequest {
     string type = 1;
     string name = 2;
 }
 
-message RemovePropertyResponse {
+message RemovePropertyReply {}
 
-}
 
 message DeleteRequest {
     string username = 1;
