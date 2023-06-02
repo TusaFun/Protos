@@ -166,7 +166,7 @@ message IsOccupedUsernameReply {
 message PaginateRequest {
     int32 skip = 1;
     int32 limit = 2;
-    string containsUsername = 3;
+    optional string containsUsername = 3;
     repeated string ignore = 4;
 }
 
