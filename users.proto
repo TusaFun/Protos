@@ -5,6 +5,7 @@ service Users {
   rpc Paginate (PaginateRequest) returns (PaginateReply);
   rpc IsOccupedUsername (IsOccupedUsernameRequest) returns (IsOccupedUsernameReply);
   rpc GetUser (GetUserRequest) returns (GetUserReply);
+  rpc GetUsers (GetUsersRequest) returns (GetUsersReply);
   rpc UpdateProperty (UpdatePropertyRequest) returns (UpdatePropertyReply);
   rpc RemoveProperty (RemovePropertyRequest) returns (RemovePropertyReply);
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordReply);
