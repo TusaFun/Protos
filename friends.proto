@@ -1,0 +1,113 @@
+﻿syntax = "proto3";
+
+service Friends {
+  rpc PaginateFriends (PaginateFriendsRequest) returns (PaginateFriendsReply);
+  rpc AddMeToMyFriends (AddMeToMyFriendsRequest) returns (AddMeToMyFriendsReply);
+  rpc SendFriendRequest (SendFriendRequestRequest) returns (PaginateFriendsItem);
+  rpc IsFriend (IsFriendRequest) returns (IsFriendReply);
+  rpc Accept (AcceptFriendRequest) returns (AcceptFriendReply);
+  rpc RemoveFriend (RemoveFriendRequest) returns (RemoveFriendReply);
+  rpc Decline (DeclineFriendRequest) returns (DeclineFriendReply);
+  rpc SetHideRow (SetHideRowRequest) returns (SetHideRowReply);
+  rpc CreateFriends (CreateFriendsRequest) returns (CreateFriendsResponse);
+}
+
+message CreateFriendsRequest {
+    string usernameOne = 1;
+    string usernameTwo = 2;
+}
+
+message CreateFriendsResponse {
+
+}
+
+message SetHideRowReply {
+
+}
+
+message AddMeToMyFriendsReply {
+
+}
+
+message AcceptFriendReply {
+
+}
+
+message RemoveFriendReply {
+
+}
+
+message DeclineFriendReply {
+
+}
+
+message SetHideRowRequest {
+    string username = 1;
+    string hideTargetUsername = 2;
+    string rowId = 3;
+    bool state = 4;
+}
+
+message DeclineFriendRequest {
+    string fromUserId = 1;
+    string toUserId = 2;
+}
+
+
+message RemoveFriendRequest {
+    string fromUserId = 1;
+    string toUserId = 2;
+}
+
+message AcceptFriendRequest {
+    string fromUserId = 1;
+    string toUserId = 2;
+}
+
+message IsFriendRequest {
+    string fromUserId = 1;
+    string toUserId = 2;
+}
+
+message IsFriendReply {
+    bool is = 1;
+}
+
+message SendFriendRequestRequest {
+    string fromUserId = 1;
+    string toUserId = 2;
+}
+
+message AddMeToMyFriendsRequest {
+    string username = 1;
+}
+
+message PaginateFriendsRequest {
+    int32 skip = 1;
+    int32 limit = 2;
+    string userId = 3;
+    PaginateOptions option = 4;
+}
+
+
+enum PaginateOptions {
+    ALL_REQUESTS = 0;
+    FROM_ME_REQUESTS = 1;
+    TO_ME_REQUESTS = 2;
+    ONLY_MY_FRIENDS = 3;
+    ALL = 4;
+}
+
+message PaginateFriendsReply {
+    repeated PaginateFriendsItem rows = 1;
+}
+
+message PaginateFriendsItem {
+    string id = 1;
+    string friendOwnerAuthId = 2;
+    string friendTargetAuthId = 3;
+    int64 creationTimestamp = 4;
+    bool isRequest = 5;
+}
+
+    
