@@ -42,15 +42,6 @@ message ChangeUserPasswordRequest {
 message ChangeUserPasswordReply {}
 
 
-message UpdateRequest {
-    string username = 1;
-    string role = 3;
-}
-
-message UpdateReply {}
-
-
-
 message RemoveUserPropertyRequest {
     string username = 1;
     string type = 2;
@@ -68,7 +59,7 @@ message DeleteUserReply {
     bool deleated = 1;
 }
 
-message PageInformation {
+message PageUsersInformation {
     int32 skipped = 1;
     int32 limit = 2;
     int64 amount = 3;
@@ -76,7 +67,7 @@ message PageInformation {
 
 message PaginateUsersReply {
     repeated GetUserReply users = 1;
-    PageInformation page = 2;
+    PageUsersInformation page = 2;
 }
 
 message UpdateUserPropertyReply {
