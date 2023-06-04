@@ -2,44 +2,44 @@
 syntax = "proto3";
 
 service Users {
-  rpc Paginate (PaginateRequest) returns (PaginateReply);
-  rpc IsOccupedUsername (IsOccupedUsernameRequest) returns (IsOccupedUsernameReply);
+  rpc PaginateUsers (PaginateUsersRequest) returns (PaginateUsersReply);
+  rpc IsOccupedUserUsername (IsOccupedUsernameRequest) returns (IsOccupedUsernameReply);
   rpc GetUser (GetUserRequest) returns (GetUserReply);
   rpc GetUsers (GetUsersRequest) returns (GetUsersReply);
-  rpc UpdateProperty (UpdatePropertyRequest) returns (UpdatePropertyReply);
-  rpc RemoveProperty (RemovePropertyRequest) returns (RemovePropertyReply);
-  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordReply);
-  rpc ChangeUsername (ChangeUsernameRequest) returns (ChangeUsernameReply);
-  rpc ChangeRole (ChangeRoleRequest) returns (ChangeRoleReply);
-  rpc Create (CreateRequest) returns (CreateReply);
-  rpc Delete (DeleteRequest) returns (DeleteReply);
-  rpc Token (TokenRequest) returns (TokenReply);
-  rpc Refresh (RefreshRequest) returns (RefreshReply);
-  rpc Revoke (RevokeRequest) returns (RevokeReply);
+  rpc UpdateUserProperty (UpdateUserPropertyRequest) returns (UpdateUserPropertyReply);
+  rpc RemoveUserProperty (RemoveUserPropertyRequest) returns (RemoveUserPropertyReply);
+  rpc ChangeUserPassword (ChangeUserPasswordRequest) returns (ChangeUserPasswordReply);
+  rpc ChangeUserUsername (ChangeUserUsernameRequest) returns (ChangeUserUsernameReply);
+  rpc ChangeUserRole (ChangeUserRoleRequest) returns (ChangeUserRoleReply);
+  rpc CreateUser (CreateUserRequest) returns (CreateUserReply);
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserReply);
+  rpc TokenUser (TokenUserRequest) returns (TokenUserReply);
+  rpc RefreshUser (RefreshUserRequest) returns (RefreshUserReply);
+  rpc RevokeUser (RevokeUserRequest) returns (RevokeUserReply);
 }
 
-message ChangeRoleRequest {
+message ChangeUserRoleRequest {
     string username = 1;
     string role = 2;
 }
 
-message ChangeRoleReply {}
+message ChangeUserRoleReply {}
 
 
-message ChangeUsernameRequest {
+message ChangeUserUsernameRequest {
     string username = 1;
     string newUsername = 2;
 }
 
-message ChangeUsernameReply {}
+message ChangeUserUsernameReply {}
 
 
-message ChangePasswordRequest {
+message ChangeUserPasswordRequest {
     string username = 1;
     string password = 2;
 }
 
-message ChangePasswordReply {}
+message ChangeUserPasswordReply {}
 
 
 message UpdateRequest {
@@ -51,20 +51,20 @@ message UpdateReply {}
 
 
 
-message RemovePropertyRequest {
+message RemoveUserPropertyRequest {
     string username = 1;
     string type = 2;
     string name = 3;
 }
 
-message RemovePropertyReply {}
+message RemoveUserPropertyReply {}
 
 
-message DeleteRequest {
+message DeleteUserRequest {
     string username = 1;
 }
 
-message DeleteReply {
+message DeleteUserReply {
     bool deleated = 1;
 }
 
@@ -74,32 +74,32 @@ message PageInformation {
     int64 amount = 3;
 }
 
-message PaginateReply {
+message PaginateUsersReply {
     repeated GetUserReply users = 1;
     PageInformation page = 2;
 }
 
-message UpdatePropertyReply {
+message UpdateUserPropertyReply {
     string username = 1;
     UserProperty property = 2;
 }
 
 
-message RevokeReply {
+message RevokeUserReply {
 
 }
 
-message RevokeRequest {
+message RevokeUserRequest {
     string username = 1;
 }
 
-message RefreshRequest {
+message RefreshUserRequest {
     string accessToken = 1;
     string refreshToken = 2;
     int64 expireMillisecondsIn = 3;
 }
 
-message RefreshReply {
+message RefreshUserReply {
     string accessToken = 1;
     string refreshToken = 2;
     string username = 3;
@@ -108,13 +108,13 @@ message RefreshReply {
     int64 expireMillisecondsIn = 6;
 }
 
-message TokenRequest {
+message TokenUserRequest {
     string username = 1;
     string password = 2;
     int64 expireMillisecondsIn = 3;
 }
 
-message TokenReply {
+message TokenUserReply {
     string accessToken = 1;
     string username = 2;
     string refreshToken = 3;
@@ -122,7 +122,7 @@ message TokenReply {
     int64 expireMillisecondsIn = 5;
 }
 
-message CreateRequest {
+message CreateUserRequest {
     string username = 1;
     string password = 2;
     string role = 3;
@@ -130,13 +130,13 @@ message CreateRequest {
 }
 
 
-message CreateReply {
+message CreateUserReply {
     string username = 1;
     string role = 3;
     repeated UserProperty properties = 4;
 }
 
-message UpdatePropertyRequest {
+message UpdateUserPropertyRequest {
     string username = 1;
     string propertyType = 2;
     string propertyName = 3;
@@ -163,7 +163,7 @@ message IsOccupedUsernameReply {
     bool occuped = 1;
 }
 
-message PaginateRequest {
+message PaginateUsersRequest {
     int32 skip = 1;
     int32 limit = 2;
     optional string containsUsername = 3;
