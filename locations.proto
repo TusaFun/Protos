@@ -1,0 +1,45 @@
+﻿
+syntax = "proto3";
+
+service Locations {
+  rpc SendLocation (SendLocationRequest) returns (SendLocationReply);
+  rpc Locations (LocationsRequest) returns (LocationsReply);
+  rpc CalculateSpeed (CalculateSpeedRequest) returns (CalculateSpeedReply);
+}
+
+message SendLocationReply {
+
+}
+
+message CalculateSpeedRequest {
+    string target = 1;
+    int32 aproximateCount = 2;
+}
+
+message CalculateSpeedReply {
+    double speed = 1;
+}
+
+message SendLocationRequest {
+    double latitude = 1;
+    double longitude = 2;
+    string targetId = 3;
+}
+
+message LocationsRequest {
+    repeated string targets = 1;
+}
+
+message LocationsReply {
+    repeated TusaLocationItem targets = 1;
+}
+
+message TusaLocationItem {
+    string target = 1;
+    double latitude = 2;
+    double longitude = 3;
+    int64 crationTimestamp = 4;
+}
+
+
+
